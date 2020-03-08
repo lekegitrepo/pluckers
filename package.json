@@ -4,7 +4,9 @@
   "description": "A game built with Html and JavaScript using Phaser 3 game engine.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production",
+    "dev": "npm run build && webpack-dev-server --mode=development"
   },
   "repository": {
     "type": "git",
