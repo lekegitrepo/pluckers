@@ -1,5 +1,5 @@
 import "phaser";
-import config from "../Config/config";
+import config from "../game-config/config";
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {

@@ -1,5 +1,5 @@
 import "phaser";
-import config from "../Config/config";
+import config from "../game-config/config";
 import Button from "../components/Button";
 
 export default class TitleScene extends Phaser.Scene {
