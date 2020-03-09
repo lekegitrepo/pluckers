@@ -8,6 +8,7 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.text(230, 60, "PLUCKERS", { fontSize: "70px", fill: "#fff" });
     // Game
     this.gameButton = new Button(
       this,
