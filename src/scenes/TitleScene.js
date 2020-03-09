@@ -19,6 +19,8 @@ export default class TitleScene extends Phaser.Scene {
       "Game"
     );
 
+    this.gameButton.setScale(0.5);
+
     // Options
     this.optionsButton = new Button(
       this,
@@ -30,6 +32,8 @@ export default class TitleScene extends Phaser.Scene {
       "Options"
     );
 
+    this.optionsButton.setScale(0.5);
+
     // Credits
     this.creditsButton = new Button(
       this,
@@ -40,6 +44,8 @@ export default class TitleScene extends Phaser.Scene {
       "Credits",
       "Credits"
     );
+
+    this.creditsButton.setScale(0.5);
 
     /*this.model = this.sys.game.globals.model;
     if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {
