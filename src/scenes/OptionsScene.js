@@ -40,8 +40,8 @@ export default class OptionsScene extends Phaser.Scene {
       this,
       400,
       500,
-      "button-one",
-      "button-one-inverse",
+      "btn-one",
+      "btn-one-inverse",
       "Menu",
       "Title"
     );
