@@ -1,5 +1,5 @@
 import "phaser";
-import "./sound-controller/SoundAndAudioManager";
+import SoundController from "./sound-controller/SoundAndAudioManager";
 import BootScene from "./scenes/BootScene";
 import config from "./game-config/config";
 import PreloaderScene from "./scenes/PreloaderScene";
@@ -12,9 +12,9 @@ class Game extends Phaser.Game {
   constructor() {
     super(config);
 
-    const sm = new SoundController();
+    const sc = new SoundController();
 
-    this.globals = { sm, bgMusic: null };
+    this.globals = { sc, bgMusic: null };
 
     this.scene.add("Boot", BootScene);
     this.scene.add("Preloader", PreloaderScene);
