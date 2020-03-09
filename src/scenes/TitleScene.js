@@ -13,39 +13,33 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2 - 100,
-      "btn-five",
-      "btn-six",
+      "btn-one",
+      "btn-one-inverse",
       "Play",
       "Game"
     );
-
-    this.gameButton.setScale(0.5);
 
     // Options
     this.optionsButton = new Button(
       this,
       config.width / 2,
       config.height / 2,
-      "btn-five",
-      "btn-six",
+      "btn-one",
+      "btn-one-inverse",
       "Options",
       "Options"
     );
-
-    this.optionsButton.setScale(0.5);
 
     // Credits
     this.creditsButton = new Button(
       this,
       config.width / 2,
       config.height / 2 + 100,
-      "btn-five",
-      "btn-six",
+      "btn-one",
+      "btn-one-inverse",
       "Credits",
       "Credits"
     );
-
-    this.creditsButton.setScale(0.5);
 
     /*this.model = this.sys.game.globals.model;
     if (this.model.musicOn === true && this.model.bgMusicPlaying === false) {

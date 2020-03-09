@@ -38,6 +38,8 @@ export default class Button extends Phaser.GameObjects.Container {
       }.bind(this)
     );
 
+    //this.button.setScale(0.5);
+
     this.scene.add.existing(this);
   }
 }
