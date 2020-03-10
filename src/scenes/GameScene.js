@@ -16,13 +16,11 @@ export default class GameScene extends Phaser.Scene {
     const bg = this.add.tileSprite(0, 0, width, height, "tile");
     bg.setOrigin(0, 0);
 
-    this.bullets = this.add.group();
-    this.bullets.enableBody = true;
-    this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    console.log(this.time.now);
 
-    this.bullets.createMultiple(50, "bullet");
-    this.bullets.setAll("checkWorldBounds", true);
-    this.bullets.setAll("outOfBoundsKill", true);
+    this.add.image(100, 250, "bullet");
+
+    this.bullets = this.physics.add.group();
 
     this.player = this.physics.add.sprite(750, 300, "dude");
 
@@ -54,12 +52,22 @@ export default class GameScene extends Phaser.Scene {
 
   fire() {
     if (this.time.now > this.shootTime) {
-      let bullet = bullets.getFirstExists(false);
+      //let bullet = this.bullets.getFirstAlive(false);
 
+      let bullet = this.bullets.create(
+        this.player.x - 10,
+        this.player.y + 15,
+        "bullet"
+      );
+      console.log(bullet);
       if (bullet) {
-        bullet.reset(this.player.x, this.player.y);
-        bullet.body.setVelocityY(160);
-        shootTime = game.time.now + 900;
+        bullet.setActive(true);
+        bullet.setVisible(true);
+        bullet.body.velocity.x = -400;
+        this.shootTime = this.time.now + 900;
+        setTimeout(function() {
+          bullet.destroy();
+        }, 5000);
       }
     }
   }
