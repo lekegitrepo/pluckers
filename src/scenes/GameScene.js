@@ -3,10 +3,11 @@ import "phaser";
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super("Game");
+    this.player;
   }
 
   preload() {
-    this.load.spritesheet("action", "assets/dude.png", {
+    this.load.spritesheet("dude", "assets/dude.png", {
       frameWidth: 32,
       frameHeight: 38
     });
@@ -18,25 +19,33 @@ export default class GameScene extends Phaser.Scene {
     bg.setOrigin(0, 0);
     this.add.image(400, 300, "logo");
 
-    //this.physics.add.image(796, 300, "action");
-    const player = this.physics.add.sprite(100, 450, "dude");
+    this.player = this.physics.add.sprite(796, 300, "action");
+    this.player.setScale(2);
+    //const player = this.physics.add.sprite(100, 450, "dude");
 
     this.anims.create({
       key: "left",
-      frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers("action", { start: 5, end: 7 }),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: "turn",
-      frames: [{ key: "dude", frame: 4 }],
+      frames: [{ key: "action", frame: 6 }],
       frameRate: 20
     });
 
     this.anims.create({
-      key: "right",
-      frames: this.anims.generateFrameNumbers("dude", { start: 5, end: 8 }),
+      key: "up",
+      frames: this.anims.generateFrameNumbers("up", { start: 0, end: 5 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "down",
+      frames: this.anims.generateFrameNumbers("down", { start: 0, end: 5 }),
       frameRate: 10,
       repeat: -1
     });
