@@ -98,11 +98,15 @@ export default class PreloaderScene extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 38
     });
-    this.load.spritesheet("action1", "assets/h-sprite.png", {
+    this.load.spritesheet("action", "assets/h-sprite.png", {
       frameWidth: 32,
       frameHeight: 38
     });
     this.load.spritesheet("explosion", "assets/explosion.png", {
+      frameWidth: 32,
+      frameHeight: 38
+    });
+    this.load.spritesheet("dude", "assets/dude.png", {
       frameWidth: 32,
       frameHeight: 38
     });
