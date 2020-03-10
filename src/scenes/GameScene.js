@@ -7,6 +7,7 @@ export default class GameScene extends Phaser.Scene {
     this.cursors;
     this.bullets;
     this.shootTime = 0;
+    this.fruits;
   }
 
   preload() {}
@@ -18,15 +19,21 @@ export default class GameScene extends Phaser.Scene {
 
     console.log(this.time.now);
 
-    this.add.image(100, 250, "bullet");
-
-    this.bullets = this.physics.add.group();
-
     this.player = this.physics.add.sprite(750, 300, "dude");
 
     this.playerAnim();
 
+    this.spawnFruit();
+
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.physics.add.overlap(
+      this.bullets,
+      this.fruits,
+      this.shotFruit,
+      null,
+      this
+    );
   }
 
   update() {
@@ -59,7 +66,7 @@ export default class GameScene extends Phaser.Scene {
         this.player.y + 15,
         "bullet"
       );
-      console.log(bullet);
+
       if (bullet) {
         bullet.setActive(true);
         bullet.setVisible(true);
@@ -98,6 +105,24 @@ export default class GameScene extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
+    });
+  }
+
+  shotFruit(bullet, fruit) {
+    fruit.disableBody(true, true);
+    bullet.disableBody(true, true);
+  }
+
+  spawnFruit() {
+    this.bullets = this.physics.add.group();
+
+    this.fruits = this.physics.add.group({
+      key: "fruit",
+      setXY: { x: Phaser.Math.Between(370, 430), y: -2 }
+    });
+
+    this.fruits.children.iterate(function(child) {
+      child.setGravityY(30);
     });
   }
 }
