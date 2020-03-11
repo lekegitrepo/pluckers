@@ -1,12 +1,12 @@
-import "phaser";
-import SoundController from "./sound-controller/SoundAndAudioManager";
-import BootScene from "./scenes/BootScene";
-import config from "./game-config/config";
-import PreloaderScene from "./scenes/PreloaderScene";
-import TitleScene from "./scenes/TitleScene";
-import GameScene from "./scenes/GameScene";
-import OptionsScene from "./scenes/OptionsScene";
-import CreditsScene from "./scenes/CreditScene";
+import 'phaser';
+import SoundController from './sound-controller/SoundAndAudioManager';
+import BootScene from './scenes/BootScene';
+import config from './game-config/config';
+import PreloaderScene from './scenes/PreloaderScene';
+import TitleScene from './scenes/TitleScene';
+import GameScene from './scenes/GameScene';
+import OptionsScene from './scenes/OptionsScene';
+import CreditsScene from './scenes/CreditScene';
 
 class Game extends Phaser.Game {
   constructor() {
@@ -16,13 +16,13 @@ class Game extends Phaser.Game {
 
     this.globals = { sc, bgMusic: null };
 
-    this.scene.add("Boot", BootScene);
-    this.scene.add("Preloader", PreloaderScene);
-    this.scene.add("Title", TitleScene);
-    this.scene.add("Options", OptionsScene);
-    this.scene.add("Credits", CreditsScene);
-    this.scene.add("Game", GameScene);
-    this.scene.start("Boot");
+    this.scene.add('Boot', BootScene);
+    this.scene.add('Preloader', PreloaderScene);
+    this.scene.add('Title', TitleScene);
+    this.scene.add('Options', OptionsScene);
+    this.scene.add('Credits', CreditsScene);
+    this.scene.add('Game', GameScene);
+    this.scene.start('Boot');
   }
 }
 
