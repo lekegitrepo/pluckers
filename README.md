@@ -2,7 +2,9 @@
 
 A game built with Html and JavaScript using Phaser 3 game engine.
 
-![library](image link for front page)
+![Screenshot]("assets/game-screenshot-1.png")
+
+![Screenshot]("assets/game-screenshot-2.png")
 
 ## Built With
 
@@ -13,7 +15,7 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://dazzling-golick-9877b9.netlify.com/)
 
 ## Installation
 

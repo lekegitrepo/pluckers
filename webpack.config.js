@@ -47,7 +47,7 @@ module.exports = {
       "typeof CANVAS_RENDERER": JSON.stringify(true),
       "typeof WEBGL_RENDERER": JSON.stringify(true)
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin("./build"),
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
