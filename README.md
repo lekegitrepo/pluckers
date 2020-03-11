@@ -15,6 +15,8 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 ## Live Demo
 
+#### warning this link is currently not working install if it's not at the time of review.
+
 [Live Demo Link](https://dazzling-golick-9877b9.netlify.com/)
 
 ## Installation
