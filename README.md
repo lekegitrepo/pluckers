@@ -2,9 +2,9 @@
 
 A game built with Html and JavaScript using Phaser 3 game engine.
 
-![Screenshot]("assets/game-screenshot-1.png")
+![Screenshot]("./assets/game-screenshot-1.png")
 
-![Screenshot]("assets/game-screenshot-2.png")
+![Screenshot]("./assets/game-screenshot-2.png")
 
 ## Built With
 
