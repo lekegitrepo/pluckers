@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import 'phaser';
 import config from '../game-config/config';
 import Button from '../components/Button';
