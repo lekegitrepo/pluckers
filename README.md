@@ -58,3 +58,11 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MiT](https://opensource.org/licenses/MIT) licensed.
+
+## Credits
+
+- pngimg.com
+
+- icons8.com
+
+- Georges "TRaK" Grondin
