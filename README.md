@@ -37,6 +37,10 @@ npm run dev
 
 3. Open index.html in your browser.
 
+## Game Document
+
+[Check here for game document](./game%document/PLUCKERS-GDD.pdf)
+
 ## Author
 
 👤 **Temitayo Adeleke**
