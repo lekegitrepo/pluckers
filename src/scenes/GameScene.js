@@ -21,9 +21,12 @@ export default class GameScene extends Phaser.Scene {
 
     this.player = this.physics.add.sprite(750, 300, "dude");
 
+    this.bullets = this.physics.add.group();
+    this.fruits = this.physics.add.group();
+
     this.playerAnim();
 
-    this.spawnFruit();
+    this.spawnBatch();
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -59,8 +62,6 @@ export default class GameScene extends Phaser.Scene {
 
   fire() {
     if (this.time.now > this.shootTime) {
-      //let bullet = this.bullets.getFirstAlive(false);
-
       let bullet = this.bullets.create(
         this.player.x - 10,
         this.player.y + 15,
@@ -114,15 +115,19 @@ export default class GameScene extends Phaser.Scene {
   }
 
   spawnFruit() {
-    this.bullets = this.physics.add.group();
-
-    this.fruits = this.physics.add.group({
-      key: "fruit",
-      setXY: { x: Phaser.Math.Between(370, 430), y: -2 }
-    });
+    this.fruits.create(Phaser.Math.Between(370, 430), -2, "fruit");
 
     this.fruits.children.iterate(function(child) {
       child.setGravityY(30);
+    });
+  }
+
+  spawnBatch() {
+    this.time.addEvent({
+      delay: 30,
+      loop: true,
+      callback: this.spawnFruit(),
+      callbackScope: this
     });
   }
 }
