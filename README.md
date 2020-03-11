@@ -8,10 +8,10 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 ## Built With
 
-- HTML5,
-- Javascript,
-- Webpack,
-- Phaser 3
+-   HTML5,
+-   Javascript,
+-   Webpack,
+-   Phaser 3
 
 ## Live Demo
 
@@ -39,15 +39,15 @@ npm run dev
 
 ## Game Document
 
-[Check here for game document](./game%document/PLUCKERS-GDD.pdf)
+[Check here for game document](./game-document/PLUCKERS-GDD.pdf)
 
 ## Author
 
 👤 **Temitayo Adeleke**
 
-- Github: [@lekegitrepo](https://github.com/lekegitrepo)
-- Twitter: [@leketemi](https://twitter.com/leketemi)
-- Linkedin: [linkedin](https://www.linkedin.com/in/adeleke-temitayo-a69125188/)
+-   Github: [@lekegitrepo](https://github.com/lekegitrepo)
+-   Twitter: [@leketemi](https://twitter.com/leketemi)
+-   Linkedin: [linkedin](https://www.linkedin.com/in/adeleke-temitayo-a69125188/)
 
 ## 🤝 Contributing
 
@@ -65,8 +65,8 @@ This project is [MiT](https://opensource.org/licenses/MIT) licensed.
 
 ## Credits
 
-- pngimg.com
+-   pngimg.com
 
-- icons8.com
+-   icons8.com
 
-- Georges "TRaK" Grondin
+-   Georges "TRaK" Grondin
