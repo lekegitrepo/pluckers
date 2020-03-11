@@ -1,8 +1,8 @@
-import "phaser";
+import 'phaser';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
-    super("Preloader");
+    super('Preloader');
   }
 
   init() {
@@ -11,7 +11,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
   preload() {
     // add logo image
-    this.add.image(400, 200, "logo");
+    this.add.image(400, 200, 'logo');
 
     // display progress bar
     const progressBar = this.add.graphics();
@@ -19,108 +19,108 @@ export default class PreloaderScene extends Phaser.Scene {
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(240, 270, 320, 50);
 
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
+    const { width } = this.cameras.main;
+    const { height } = this.cameras.main;
     const loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
-      text: "Loading...",
+      text: 'Loading...',
       style: {
-        font: "20px monospace",
-        fill: "#ffffff"
-      }
+        font: '20px monospace',
+        fill: '#ffffff',
+      },
     });
     loadingText.setOrigin(0.5, 0.5);
 
     const percentText = this.make.text({
       x: width / 2,
       y: height / 2 - 5,
-      text: "0%",
+      text: '0%',
       style: {
-        font: "18px monospace",
-        fill: "#ffffff"
-      }
+        font: '18px monospace',
+        fill: '#ffffff',
+      },
     });
     percentText.setOrigin(0.5, 0.5);
 
     const assetText = this.make.text({
       x: width / 2,
       y: height / 2 + 50,
-      text: "",
+      text: '',
       style: {
-        font: "18px monospace",
-        fill: "#ffffff"
-      }
+        font: '18px monospace',
+        fill: '#ffffff',
+      },
     });
     assetText.setOrigin(0.5, 0.5);
 
     // update progress bar
-    this.load.on("progress", function(value) {
-      percentText.setText(parseInt(value * 100) + "%");
+    this.load.on('progress', (value) => {
+      percentText.setText(`${parseInt(value * 100)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
 
     // update file progress text
-    this.load.on("fileprogress", function(file) {
-      assetText.setText("Loading asset: " + file.key);
+    this.load.on('fileprogress', (file) => {
+      assetText.setText(`Loading asset: ${file.key}`);
     });
 
     // remove progress bar when complete
     this.load.on(
-      "complete",
-      function() {
+      'complete',
+      () => {
         progressBar.destroy();
         progressBox.destroy();
         loadingText.destroy();
         percentText.destroy();
         assetText.destroy();
         this.ready();
-      }.bind(this)
+      },
     );
 
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
-    this.load.image("btn-one", "assets/ui/button-one.png");
-    this.load.image("btn-one-inverse", "assets/ui/button-one-inverse.png");
-    this.load.image("phaserLogo", "assets/logo.png");
-    this.load.image("box", "assets/ui/unchecked.png");
-    this.load.image("checkedBox", "assets/ui/checked.png");
+    this.load.image('btn-one', 'assets/ui/button-one.png');
+    this.load.image('btn-one-inverse', 'assets/ui/button-one-inverse.png');
+    this.load.image('phaserLogo', 'assets/logo.png');
+    this.load.image('box', 'assets/ui/unchecked.png');
+    this.load.image('checkedBox', 'assets/ui/checked.png');
 
-    this.load.image("tile", "assets/tile-two.jpg");
-    this.load.image("fruit", "assets/fruit-1.png");
-    this.load.image("bullet", "assets/shot.png");
+    this.load.image('tile', 'assets/tile-two.jpg');
+    this.load.image('fruit', 'assets/fruit-1.png');
+    this.load.image('bullet', 'assets/shot.png');
 
-    this.load.audio("bgMusic", ["assets/audios/TownTheme.mp3"]);
+    this.load.audio('bgMusic', ['assets/audios/TownTheme.mp3']);
 
-    this.load.spritesheet("up", "assets/up-sprite.png", {
+    this.load.spritesheet('up', 'assets/up-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
-    this.load.spritesheet("down", "assets/down-sprite.png", {
+    this.load.spritesheet('down', 'assets/down-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
-    this.load.spritesheet("action", "assets/h-sprite.png", {
+    this.load.spritesheet('action', 'assets/h-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
-    this.load.spritesheet("explosion", "assets/explosion.png", {
+    this.load.spritesheet('explosion', 'assets/explosion.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
-    this.load.spritesheet("dude", "assets/dude.png", {
+    this.load.spritesheet('dude', 'assets/dude.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
   }
 
   ready() {
-    this.scene.start("Title");
+    this.scene.start('Title');
     this.readyCount++;
     if (this.readyCount === 2) {
-      this.scene.start("Title");
+      this.scene.start('Title');
     }
   }
 }

@@ -1,23 +1,23 @@
-import "phaser";
-import config from "../game-config/config";
-import Button from "../components/Button";
+import 'phaser';
+import config from '../game-config/config';
+import Button from '../components/Button';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
-    super("Title");
+    super('Title');
   }
 
   create() {
-    this.add.text(230, 60, "PLUCKERS", { fontSize: "70px", fill: "#fff" });
+    this.add.text(230, 60, 'PLUCKERS', { fontSize: '70px', fill: '#fff' });
     // Game
     this.gameButton = new Button(
       this,
       config.width / 2,
       config.height / 2 - 100,
-      "btn-one",
-      "btn-one-inverse",
-      "Play",
-      "Game"
+      'btn-one',
+      'btn-one-inverse',
+      'Play',
+      'Game',
     );
 
     // Options
@@ -25,10 +25,10 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2,
-      "btn-one",
-      "btn-one-inverse",
-      "Options",
-      "Options"
+      'btn-one',
+      'btn-one-inverse',
+      'Options',
+      'Options',
     );
 
     // Credits
@@ -36,15 +36,15 @@ export default class TitleScene extends Phaser.Scene {
       this,
       config.width / 2,
       config.height / 2 + 100,
-      "btn-one",
-      "btn-one-inverse",
-      "Credits",
-      "Credits"
+      'btn-one',
+      'btn-one-inverse',
+      'Credits',
+      'Credits',
     );
 
     this.sm = this.sys.game.globals.sc;
     if (this.sm.musicOn === true && this.sm.bgMusicPlaying === false) {
-      this.bgMusic = this.sound.add("bgMusic", { volume: 0.1, loop: true });
+      this.bgMusic = this.sound.add('bgMusic', { volume: 0.1, loop: true });
       this.bgMusic.resume();
       this.bgMusic.play();
       this.sm.bgMusicPlaying = true;
@@ -59,8 +59,8 @@ export default class TitleScene extends Phaser.Scene {
         config.width / 2,
         config.height / 2 - offset * 100,
         config.width,
-        config.height
-      )
+        config.height,
+      ),
     );
   }
 
