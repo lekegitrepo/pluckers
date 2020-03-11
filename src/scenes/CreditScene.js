@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import 'phaser';
 import config from '../game-config/config';
 

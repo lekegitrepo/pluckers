@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-unused-expressions */
 import 'phaser';
 
 export default class GameScene extends Phaser.Scene {
@@ -9,8 +11,6 @@ export default class GameScene extends Phaser.Scene {
     this.shootTime = 0;
     this.fruits;
   }
-
-  preload() {}
 
   create() {
     const { width, height } = this.sys.game.config;
