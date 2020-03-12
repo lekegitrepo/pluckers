@@ -19,7 +19,7 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 ## How to play
 
-**_This game involves two players (although the second player as not been added, as this game is still at the initial stage of development. Each player takes turn._**
+**_This game involves two players (although the second player as not been added, as this game is still at the initial stage of development). Each player takes turn._**
 
 -   Move the player up and down by pressing up arrow key and down arrow key on the keyboard.
 
