@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-expressions */
 import 'phaser';
+import Player from '../game/player';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -10,6 +11,7 @@ export default class GameScene extends Phaser.Scene {
     this.bullets;
     this.shootTime = 0;
     this.fruits;
+    this.myPlayer;
   }
 
   create() {
@@ -17,7 +19,21 @@ export default class GameScene extends Phaser.Scene {
     const bg = this.add.tileSprite(0, 0, width, height, 'tile');
     bg.setOrigin(0, 0);
 
-    this.player = this.physics.add.sprite(750, 300, 'dude');
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+    //this.player = this.physics.add.sprite(750, 300, 'dude');
+    this.player = new Player(
+      {
+        scene: this,
+        x: 750,
+        y: 300,
+        key: 'dude',
+        name: 'player-one'
+      },
+      this.cursors
+    );
+
+    console.log(this.player.getScore());
 
     this.bullets = this.physics.add.group();
     this.fruits = this.physics.add.group();
@@ -25,8 +41,6 @@ export default class GameScene extends Phaser.Scene {
     this.playerAnim();
 
     this.spawnBatch();
-
-    this.cursors = this.input.keyboard.createCursorKeys();
 
     this.physics.add.overlap(
       this.bullets,
@@ -37,7 +51,7 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  update() {
+  /*update() {
     if (this.cursors.up.isDown) {
       this.player.setVelocityY(-160);
 
@@ -56,6 +70,10 @@ export default class GameScene extends Phaser.Scene {
       this.player.anims.play('left', true);
       this.fire();
     }
+  }*/
+
+  update() {
+    this.player.update();
   }
 
   fire() {

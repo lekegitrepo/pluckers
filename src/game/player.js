@@ -1,11 +1,33 @@
 import 'phaser';
 
 export default class Player extends Phaser.GameObjects.Sprite {
-  constructor(config) {
+  constructor(config, cursor) {
     super(config.scene, config.x, config.y, config.key, config.name);
+    config.scene.physics.world.enableBody(this);
     config.scene.add.existing(this);
-    this.physics.add.sprite(config.x, config.y, config.key);
     this.score = 0;
+    this.cursors = cursor;
+  }
+
+  update() {
+    if (this.cursors.up.isDown) {
+      this.body.setVelocityY(-160);
+
+      this.anims.play('up', true);
+    } else if (this.cursors.down.isDown) {
+      this.body.setVelocityY(160);
+
+      this.anims.play('down', true);
+    } else {
+      this.body.setVelocityY(0);
+
+      this.anims.play('turn');
+    }
+
+    if (this.cursors.left.isDown) {
+      this.anims.play('left', true);
+      this.fire();
+    }
   }
 
   getPlayer() {
