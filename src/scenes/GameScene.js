@@ -20,14 +20,13 @@ export default class GameScene extends Phaser.Scene {
     bg.setOrigin(0, 0);
 
     this.cursors = this.input.keyboard.createCursorKeys();
-
-    //this.player = this.physics.add.sprite(750, 300, 'dude');
     this.player = new Player(
       {
         scene: this,
         x: 750,
         y: 300,
         key: 'dude',
+        orient: 'left',
         name: 'player-one'
       },
       this.cursors
@@ -39,6 +38,7 @@ export default class GameScene extends Phaser.Scene {
         x: 50,
         y: 300,
         key: 'dude',
+        orient: 'right',
         name: 'player-two'
       },
       this.cursors
@@ -85,6 +85,7 @@ export default class GameScene extends Phaser.Scene {
 
   update() {
     this.player.update();
+    this.player2.update();
 
     if (this.cursors.left.isDown) {
       this.player.anims.play('left', true);

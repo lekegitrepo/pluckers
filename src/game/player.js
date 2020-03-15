@@ -2,28 +2,51 @@ import 'phaser';
 
 export default class Player extends Phaser.GameObjects.Sprite {
   constructor(config, cursor) {
-    super(config.scene, config.x, config.y, config.key, config.name);
+    super(
+      config.scene,
+      config.x,
+      config.y,
+      config.key,
+      config.orient,
+      config.name
+    );
     config.scene.physics.world.enableBody(this);
     config.scene.add.existing(this);
     this.score = 0;
     this.cursors = cursor;
     this.shootTime;
-    this.scene = config.scene;
+    this.orien = config.orient;
   }
 
   update() {
-    if (this.cursors.up.isDown) {
-      this.body.setVelocityY(-160);
+    if (this.orien == 'left') {
+      if (this.cursors.up.isDown) {
+        this.body.setVelocityY(-160);
 
-      this.anims.play('up', true);
-    } else if (this.cursors.down.isDown) {
-      this.body.setVelocityY(160);
+        this.anims.play('upLeft', true);
+      } else if (this.cursors.down.isDown) {
+        this.body.setVelocityY(160);
 
-      this.anims.play('down', true);
-    } else {
-      this.body.setVelocityY(0);
+        this.anims.play('downLeft', true);
+      } else {
+        this.body.setVelocityY(0);
 
-      this.anims.play('turn');
+        this.anims.play('turnLeft');
+      }
+    } else if (this.orien == 'right') {
+      if (this.cursors.up.isDown) {
+        this.body.setVelocityY(-160);
+
+        this.anims.play('upRight', true);
+      } else if (this.cursors.down.isDown) {
+        this.body.setVelocityY(160);
+
+        this.anims.play('downRight', true);
+      } else {
+        this.body.setVelocityY(0);
+
+        this.anims.play('turnRight');
+      }
     }
 
     /*if (this.cursors.left.isDown) {
