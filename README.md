@@ -19,7 +19,7 @@
 
 ## Game Design Document
 
-### - The Game overview
+### The Game overview
 
 **_The game focus on competitive nature of human being. It involve two players taken turn, using their target skill to increase their scores._** [read more here](pluckers_GDD.md)
 

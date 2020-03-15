@@ -33,7 +33,7 @@ export default class GameScene extends Phaser.Scene {
       this.fruits,
       this.shotFruit,
       null,
-      this,
+      this
     );
   }
 
@@ -63,7 +63,7 @@ export default class GameScene extends Phaser.Scene {
       const bullet = this.bullets.create(
         this.player.x - 10,
         this.player.y + 15,
-        'bullet',
+        'bullet'
       );
 
       if (bullet) {
@@ -83,27 +83,27 @@ export default class GameScene extends Phaser.Scene {
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
       frameRate: 10,
-      repeat: -1,
+      repeat: -1
     });
 
     this.anims.create({
       key: 'turn',
       frames: [{ key: 'dude', frame: 0 }],
-      frameRate: 20,
+      frameRate: 20
     });
 
     this.anims.create({
       key: 'up',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
       frameRate: 10,
-      repeat: -1,
+      repeat: -1
     });
 
     this.anims.create({
       key: 'down',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
       frameRate: 10,
-      repeat: -1,
+      repeat: -1
     });
   }
 
@@ -115,7 +115,7 @@ export default class GameScene extends Phaser.Scene {
   spawnFruit() {
     this.fruits.create(Phaser.Math.Between(370, 430), -2, 'fruit');
 
-    this.fruits.children.iterate((child) => {
+    this.fruits.children.iterate(child => {
       child.setGravityY(30);
     });
   }
@@ -125,7 +125,7 @@ export default class GameScene extends Phaser.Scene {
       delay: 30,
       loop: true,
       callback: this.spawnFruit(),
-      callbackScope: this,
+      callbackScope: this
     });
   }
 }
