@@ -1,6 +1,6 @@
 # pluckers
 
-A game built with Html and JavaScript using Phaser 3 game engine.
+### A game built with Html and JavaScript using Phaser 3 game engine.
 
 ![Screenshot](./assets/game-screenshot-1.png)
 
@@ -21,7 +21,9 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 ### - The Game overview
 
-** _The game focus on competitive nature of human being. It involve two players taken turn, using their target skill to increase their scores._** [read more here](pluckers_GDD.md)
+**_The game focus on competitive nature of human being. It involve two players taken turn, using their target skill to increase their scores._** [read more here](pluckers_GDD.md)
+
+[Click here for game design document in PDF](./game-document/PLUCKERS-GDD.pdf)
 
 ## How to play
 
@@ -54,10 +56,6 @@ npm run dev
 ```
 
 3. Open index.html in your browser.
-
-## Game Document
-
-[Check here for game document](./game-document/PLUCKERS-GDD.pdf)
 
 ## Author
 
