@@ -7,11 +7,11 @@ export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
     this.player;
+    this.player2;
     this.cursors;
     this.bullets;
     this.shootTime = 0;
     this.fruits;
-    this.myPlayer;
   }
 
   create() {
@@ -29,6 +29,17 @@ export default class GameScene extends Phaser.Scene {
         y: 300,
         key: 'dude',
         name: 'player-one'
+      },
+      this.cursors
+    );
+
+    this.player2 = new Player(
+      {
+        scene: this,
+        x: 50,
+        y: 300,
+        key: 'dude',
+        name: 'player-two'
       },
       this.cursors
     );
@@ -74,6 +85,11 @@ export default class GameScene extends Phaser.Scene {
 
   update() {
     this.player.update();
+
+    if (this.cursors.left.isDown) {
+      this.player.anims.play('left', true);
+      this.fire();
+    }
   }
 
   fire() {
@@ -105,21 +121,48 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'turn',
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'turnLeft',
       frames: [{ key: 'dude', frame: 0 }],
       frameRate: 20
     });
 
     this.anims.create({
-      key: 'up',
+      key: 'turnRight',
+      frames: [{ key: 'dude', frame: 5 }],
+      frameRate: 20
+    });
+
+    this.anims.create({
+      key: 'upLeft',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
-      key: 'down',
+      key: 'downLeft',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'upRight',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'downRight',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
       frameRate: 10,
       repeat: -1
     });

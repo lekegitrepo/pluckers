@@ -7,6 +7,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     config.scene.add.existing(this);
     this.score = 0;
     this.cursors = cursor;
+    this.shootTime;
+    this.scene = config.scene;
   }
 
   update() {
@@ -24,10 +26,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.anims.play('turn');
     }
 
-    if (this.cursors.left.isDown) {
+    /*if (this.cursors.left.isDown) {
       this.anims.play('left', true);
       this.fire();
-    }
+    }*/
   }
 
   getPlayer() {
