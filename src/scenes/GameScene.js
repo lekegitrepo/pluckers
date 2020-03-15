@@ -62,49 +62,31 @@ export default class GameScene extends Phaser.Scene {
     );
   }
 
-  /*update() {
-    if (this.cursors.up.isDown) {
-      this.player.setVelocityY(-160);
-
-      this.player.anims.play('up', true);
-    } else if (this.cursors.down.isDown) {
-      this.player.setVelocityY(160);
-
-      this.player.anims.play('down', true);
-    } else {
-      this.player.setVelocityY(0);
-
-      this.player.anims.play('turn');
-    }
-
-    if (this.cursors.left.isDown) {
-      this.player.anims.play('left', true);
-      this.fire();
-    }
-  }*/
-
   update() {
     this.player.update();
     this.player2.update();
 
     if (this.cursors.left.isDown) {
       this.player.anims.play('left', true);
-      this.fire();
+      this.fire(this.player, -400);
+    } else if (this.cursors.right.isDown) {
+      this.player2.anims.play('right', true);
+      this.fire(this.player2, 400);
     }
   }
 
-  fire() {
+  fire(player, dir) {
     if (this.time.now > this.shootTime) {
       const bullet = this.bullets.create(
-        this.player.x - 10,
-        this.player.y + 15,
+        player.x - 10,
+        player.y + 15,
         'bullet'
       );
 
       if (bullet) {
         bullet.setActive(true);
         bullet.setVisible(true);
-        bullet.body.velocity.x = -400;
+        bullet.body.velocity.x = dir;
         this.shootTime = this.time.now + 900;
         setTimeout(() => {
           bullet.destroy();
