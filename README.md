@@ -17,6 +17,12 @@ A game built with Html and JavaScript using Phaser 3 game engine.
 
 [Live Demo Link](https://dazzling-golick-9877b9.netlify.com/)
 
+## Game Design Document
+
+### - The Game overview
+
+** _The game focus on competitive nature of human being. It involve two players taken turn, using their target skill to increase their scores._** [read more here](pluckers_GDD.md)
+
 ## How to play
 
 **_This game involves two players (although the second player as not been added, as this game is still at the initial stage of development). Each player takes turn._**
