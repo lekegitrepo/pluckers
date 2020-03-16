@@ -1,10 +1,10 @@
 import 'phaser';
 
-console.log('this PlayerInfo class');
-
 export default class PlayerInfo extends Phaser.Scene {
   constructor() {
     super('PlayerInfo');
+    this.playerOne;
+    this.playerTwo;
   }
 
   preload() {
@@ -12,12 +12,30 @@ export default class PlayerInfo extends Phaser.Scene {
   }
 
   create() {
-    //let htmlDom = this.add.dom(400, 0).createFromCache('info')
-    this.add.text(300, 100, 'this is PlayerInfo', {
-      color: 'white',
-      fontSize: '20px '
+    let htmlDom = this.add.dom(400, 200).createFromCache('info');
+    htmlDom.addListener('click');
+    htmlDom.on('click', function(e) {
+      if (e.target.name === 'submit') {
+        //this.getChildByName
+        this.playerOne = this.getChildByName('player-one');
+        this.playerTwo = this.getChildByName('player-two');
+
+        if (this.playerOne.value !== '' && this.playerTwo.value !== '') {
+          //  Turn off the click events
+          this.removeListener('click');
+
+          //  Hide the login element
+          this.setVisible(false);
+          //console.log(this.playerOne.value, this.playerTwo.value);
+          game.scene.start('Title', {
+            playerOne: this.playerOne.value,
+            playerTwo: this.playerTwo.value
+          });
+        }
+      }
+      //this.scene.start('Title');
     });
-    this.scene.start('Title');
+    //this.scene.start('Title');
   }
 }
 

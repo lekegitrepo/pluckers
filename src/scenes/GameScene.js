@@ -19,7 +19,13 @@ export default class GameScene extends Phaser.Scene {
     this.initialTime = 30;
   }
 
+  init(data) {
+    this.playerOne = data.playerOne;
+    this.playerTwo = data.playerTwo;
+  }
+
   create() {
+    console.log('This is game players ', this.playerOne, this.playerTwo);
     const { width, height } = this.sys.game.config;
     const bg = this.add.tileSprite(0, 0, width, height, 'tile');
     bg.setOrigin(0, 0);
@@ -32,7 +38,7 @@ export default class GameScene extends Phaser.Scene {
         y: 300,
         key: 'dude',
         orient: 'left',
-        name: 'player-one'
+        name: this.playerOne
       },
       this.cursors
     );
@@ -44,7 +50,7 @@ export default class GameScene extends Phaser.Scene {
         y: 300,
         key: 'dude',
         orient: 'right',
-        name: 'player-two'
+        name: this.playerTwo
       },
       this.cursors
     );

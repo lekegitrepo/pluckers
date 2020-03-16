@@ -8,7 +8,13 @@ export default class TitleScene extends Phaser.Scene {
     super('Title');
   }
 
+  init(data) {
+    this.playerOne = data.playerOne;
+    this.playerTwo = data.playerTwo;
+  }
+
   create() {
+    console.log('This is game players ', this.playerOne, this.playerTwo);
     this.add.text(230, 60, 'PLUCKERS', { fontSize: '70px', fill: '#fff' });
     // Game
     this.gameButton = new Button(
@@ -19,6 +25,10 @@ export default class TitleScene extends Phaser.Scene {
       'btn-one-inverse',
       'Play',
       'Game',
+      {
+        playerOne: this.playerOne,
+        playerTwo: this.playerTwo
+      }
     );
 
     // Options
@@ -29,7 +39,7 @@ export default class TitleScene extends Phaser.Scene {
       'btn-one',
       'btn-one-inverse',
       'Options',
-      'Options',
+      'Options'
     );
 
     // Credits
@@ -40,7 +50,7 @@ export default class TitleScene extends Phaser.Scene {
       'btn-one',
       'btn-one-inverse',
       'Credits',
-      'Credits',
+      'Credits'
     );
 
     this.sm = this.sys.game.globals.sc;
@@ -60,8 +70,8 @@ export default class TitleScene extends Phaser.Scene {
         config.width / 2,
         config.height / 2 - offset * 100,
         config.width,
-        config.height,
-      ),
+        config.height
+      )
     );
   }
 
