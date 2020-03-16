@@ -16,10 +16,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.cursors = cursor;
     this.shootTime;
     this.orien = config.orient;
+    this.turn = false;
   }
 
   update() {
-    if (this.orien == 'left') {
+    if (this.orien == 'left' && this.turn) {
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-160);
 
@@ -33,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.anims.play('turnLeft');
       }
-    } else if (this.orien == 'right') {
+    } else if (this.orien == 'right' && this.turn) {
       if (this.cursors.up.isDown) {
         this.body.setVelocityY(-160);
 
@@ -61,5 +62,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   getScore() {
     return this.score;
+  }
+
+  getPlayerTurn() {
+    return this.turn;
+  }
+
+  setPlayerTurn(turn) {
+    this.turn = turn;
   }
 }
