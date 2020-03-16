@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import 'phaser';
 import Player from '../game/player';
+import gameController from '../game/game_controller';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -60,6 +61,7 @@ export default class GameScene extends Phaser.Scene {
       null,
       this
     );
+    console.log(Phaser.Math.Between(0, 1));
   }
 
   update() {

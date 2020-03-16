@@ -20,12 +20,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   update() {
-    if (this.orien == 'left' && this.turn) {
-      if (this.cursors.up.isDown) {
+    if (this.orien == 'left') {
+      if (this.cursors.up.isDown && this.turn) {
         this.body.setVelocityY(-160);
 
         this.anims.play('upLeft', true);
-      } else if (this.cursors.down.isDown) {
+      } else if (this.cursors.down.isDown && this.turn) {
         this.body.setVelocityY(160);
 
         this.anims.play('downLeft', true);
@@ -34,12 +34,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.anims.play('turnLeft');
       }
-    } else if (this.orien == 'right' && this.turn) {
-      if (this.cursors.up.isDown) {
+    } else if (this.orien == 'right') {
+      if (this.cursors.up.isDown && this.turn) {
         this.body.setVelocityY(-160);
 
         this.anims.play('upRight', true);
-      } else if (this.cursors.down.isDown) {
+      } else if (this.cursors.down.isDown && this.turn) {
         this.body.setVelocityY(160);
 
         this.anims.play('downRight', true);
