@@ -198,19 +198,26 @@ export default class GameScene extends Phaser.Scene {
   }
 
   spawnFruit() {
-    this.fruits.create(Phaser.Math.Between(370, 430), -2, 'fruit');
+    const fruit = this.fruits.create(
+      Phaser.Math.Between(200, 600),
+      -5,
+      'fruit'
+    );
 
     this.fruits.children.iterate(child => {
-      child.setGravityY(30);
+      child.setGravityY(140);
     });
+    setTimeout(() => {
+      fruit.destroy();
+    }, 6000);
   }
 
   spawnBatch() {
     this.time.addEvent({
-      delay: 30,
-      loop: true,
-      callback: this.spawnFruit(),
-      callbackScope: this
+      delay: 100,
+      callback: this.spawnFruit,
+      callbackScope: this,
+      loop: true
     });
   }
 
