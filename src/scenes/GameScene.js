@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import 'phaser';
 import Player from '../game/player';
-import gameController from '../game/game_controller';
+import GameController from '../game/game_controller';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -13,6 +13,7 @@ export default class GameScene extends Phaser.Scene {
     this.bullets;
     this.shootTime = 0;
     this.fruits;
+    this.currentPlayer;
   }
 
   create() {
@@ -47,6 +48,11 @@ export default class GameScene extends Phaser.Scene {
 
     console.log(this.player.getScore());
 
+    let gc = new GameController(this.player, this.player2);
+    this.currentPlayer = gc.currentPlayer();
+    this.currentPlayer.setPlayerTurn(true);
+    console.log(this.currentPlayer.getPlayer());
+
     this.bullets = this.physics.add.group();
     this.fruits = this.physics.add.group();
 
@@ -68,10 +74,13 @@ export default class GameScene extends Phaser.Scene {
     this.player.update();
     this.player2.update();
 
-    if (this.cursors.left.isDown) {
+    if (this.cursors.left.isDown && this.player == this.currentPlayer) {
       this.player.anims.play('left', true);
       this.fire(this.player, -400);
-    } else if (this.cursors.right.isDown) {
+    } else if (
+      this.cursors.right.isDown &&
+      this.player2 == this.currentPlayer
+    ) {
       this.player2.anims.play('right', true);
       this.fire(this.player2, 400);
     }
