@@ -14,6 +14,9 @@ export default class GameScene extends Phaser.Scene {
     this.shootTime = 0;
     this.fruits;
     this.currentPlayer;
+    this.timerText;
+    this.timedEvent;
+    this.initialTime = 30;
   }
 
   create() {
@@ -67,7 +70,20 @@ export default class GameScene extends Phaser.Scene {
       null,
       this
     );
-    console.log(Phaser.Math.Between(0, 1));
+
+    this.timerText = this.add.text(
+      32,
+      32,
+      'Countdown: ' + this.formatTime(this.initialTime)
+    );
+
+    // Each 1000 ms call onEvent
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.onEvent,
+      callbackScope: this,
+      loop: true
+    });
   }
 
   update() {
@@ -84,9 +100,23 @@ export default class GameScene extends Phaser.Scene {
       this.player2.anims.play('right', true);
       this.fire(this.player2, 400);
     }
+
+    if (this.initialTime == 0) {
+      console.log(this.initialTime, ' this is the time for each player');
+      this.initialTime = 30;
+      if (this.player == this.currentPlayer) {
+        this.player.setPlayerTurn(false);
+        this.currentPlayer = this.player2;
+        this.currentPlayer.setPlayerTurn(true);
+      } else if (this.player2 == this.currentPlayer) {
+        this.player2.setPlayerTurn(false);
+        this.currentPlayer = this.player;
+        this.currentPlayer.setPlayerTurn(true);
+      }
+    }
   }
 
-  fire(player, dir) {
+  fire(player, direction) {
     if (this.time.now > this.shootTime) {
       const bullet = this.bullets.create(
         player.x - 10,
@@ -97,7 +127,7 @@ export default class GameScene extends Phaser.Scene {
       if (bullet) {
         bullet.setActive(true);
         bullet.setVisible(true);
-        bullet.body.velocity.x = dir;
+        bullet.body.velocity.x = direction;
         this.shootTime = this.time.now + 900;
         setTimeout(() => {
           bullet.destroy();
@@ -182,5 +212,21 @@ export default class GameScene extends Phaser.Scene {
       callback: this.spawnFruit(),
       callbackScope: this
     });
+  }
+
+  formatTime(seconds) {
+    // Minutes
+    const minutes = Math.floor(seconds / 60);
+    // Seconds
+    let partInSeconds = seconds % 60;
+    // Adds left zeros to seconds
+    partInSeconds = partInSeconds.toString().padStart(2, '0');
+    // Returns formated time
+    return `${minutes}:${partInSeconds}`;
+  }
+
+  onEvent() {
+    this.initialTime -= 1; // One second
+    this.timerText.setText('Countdown: ' + this.formatTime(this.initialTime));
   }
 }
