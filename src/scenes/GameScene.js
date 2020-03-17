@@ -17,8 +17,7 @@ export default class GameScene extends Phaser.Scene {
     this.timerText;
     this.timedEvent;
     this.initialTime = 30;
-    this.playerOneScore = 0;
-    this.playerTwoScore = 0;
+    this.turnIndicator;
   }
 
   init(data) {
@@ -27,7 +26,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    console.log('This is game players ', this.playerOne, this.playerTwo);
     const { width, height } = this.sys.game.config;
     const bg = this.add.tileSprite(0, 0, width, height, 'tile');
     bg.setOrigin(0, 0);
@@ -44,6 +42,8 @@ export default class GameScene extends Phaser.Scene {
       },
       this.cursors
     );
+
+    const player1XY = this.player.getPlayerXYPoint();
 
     this.player2 = new Player(
       {
@@ -67,6 +67,13 @@ export default class GameScene extends Phaser.Scene {
     this.currentPlayer = gc.currentPlayer();
     this.currentPlayer.setPlayerTurn(true);
     console.log(this.currentPlayer.getPlayer());
+
+    this.turnIndicator = this.add.text(
+      200,
+      100,
+      this.currentPlayer.getPlayerName() + "'s turn",
+      { fontSize: '34px', fill: 'yellow' }
+    );
 
     this.bullets = this.physics.add.group();
     this.fruits = this.physics.add.group();
@@ -142,7 +149,6 @@ export default class GameScene extends Phaser.Scene {
 
   switchPlayer() {
     if (this.initialTime === 0) {
-      console.log(this.initialTime, ' this is the time for each player');
       this.initialTime = 30;
       if (this.player === this.currentPlayer) {
         this.player.setPlayerTurn(false);
@@ -154,6 +160,7 @@ export default class GameScene extends Phaser.Scene {
         this.currentPlayer.setPlayerTurn(true);
       }
     }
+    this.turnIndicator.setText(this.currentPlayer.getPlayerName() + "'s turn");
   }
 
   playerAnim() {
