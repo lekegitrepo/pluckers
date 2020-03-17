@@ -102,30 +102,9 @@ export default class GameScene extends Phaser.Scene {
     this.player.update();
     this.player2.update();
 
-    if (this.cursors.left.isDown && this.player == this.currentPlayer) {
-      this.player.anims.play('left', true);
-      this.fire(this.player, -400);
-    } else if (
-      this.cursors.right.isDown &&
-      this.player2 == this.currentPlayer
-    ) {
-      this.player2.anims.play('right', true);
-      this.fire(this.player2, 400);
-    }
+    this.switchPlayer();
 
-    if (this.initialTime == 0) {
-      console.log(this.initialTime, ' this is the time for each player');
-      this.initialTime = 30;
-      if (this.player == this.currentPlayer) {
-        this.player.setPlayerTurn(false);
-        this.currentPlayer = this.player2;
-        this.currentPlayer.setPlayerTurn(true);
-      } else if (this.player2 == this.currentPlayer) {
-        this.player2.setPlayerTurn(false);
-        this.currentPlayer = this.player;
-        this.currentPlayer.setPlayerTurn(true);
-      }
-    }
+    this.checkPlayerAndFire();
   }
 
   fire(player, direction) {
@@ -144,6 +123,35 @@ export default class GameScene extends Phaser.Scene {
         setTimeout(() => {
           bullet.destroy();
         }, 5000);
+      }
+    }
+  }
+
+  checkPlayerAndFire() {
+    if (this.cursors.left.isDown && this.player.getPlayerTurn() === true) {
+      this.player.anims.play('left', true);
+      this.fire(this.player, -400);
+    } else if (
+      this.cursors.right.isDown &&
+      this.player2.getPlayerTurn() === true
+    ) {
+      this.player2.anims.play('right', true);
+      this.fire(this.player2, 400);
+    }
+  }
+
+  switchPlayer() {
+    if (this.initialTime === 0) {
+      console.log(this.initialTime, ' this is the time for each player');
+      this.initialTime = 30;
+      if (this.player === this.currentPlayer) {
+        this.player.setPlayerTurn(false);
+        this.currentPlayer = this.player2;
+        this.currentPlayer.setPlayerTurn(true);
+      } else if (this.player2 === this.currentPlayer) {
+        this.player2.setPlayerTurn(false);
+        this.currentPlayer = this.player;
+        this.currentPlayer.setPlayerTurn(true);
       }
     }
   }
@@ -230,7 +238,7 @@ export default class GameScene extends Phaser.Scene {
 
   spawnBatch() {
     this.time.addEvent({
-      delay: 100,
+      delay: 1000,
       callback: this.spawnFruit,
       callbackScope: this,
       loop: true
@@ -238,13 +246,12 @@ export default class GameScene extends Phaser.Scene {
   }
 
   formatTime(seconds) {
-    // Minutes
     const minutes = Math.floor(seconds / 60);
-    // Seconds
+
     let partInSeconds = seconds % 60;
-    // Adds left zeros to seconds
+
     partInSeconds = partInSeconds.toString().padStart(2, '0');
-    // Returns formated time
+
     return `${minutes}:${partInSeconds}`;
   }
 
