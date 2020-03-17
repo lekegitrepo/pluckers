@@ -158,26 +158,36 @@ export default class GameScene extends Phaser.Scene {
       this.player.getEligibilityToPlay() === true ||
       this.player2.getEligibilityToPlay() === true
     ) {
-      const round = this.currentPlayer.getRoundPlayed() + 1;
-
       if (this.initialTime === 0) {
         this.initialTime = 30;
         if (this.player === this.currentPlayer) {
-          this.player.updateRoundPlayed(round);
+          const player1Round = this.player.getRoundPlayed() + 1;
+          this.player.updateRoundPlayed(player1Round);
+          console.log(
+            this.player.getPlayerName(),
+            this.player.getRoundPlayed(),
+            this.rounds
+          );
           this.player.setPlayerTurn(false);
+          this.roundCount(this.player);
           this.currentPlayer = this.player2;
           this.currentPlayer.setPlayerTurn(true);
         } else if (this.player2 === this.currentPlayer) {
-          this.player2.updateRoundPlayed(round);
+          const player2Round = this.player2.getRoundPlayed() + 1;
+          this.player2.updateRoundPlayed(player2Round);
+          console.log(
+            this.player2.getPlayerName(),
+            this.player2.getRoundPlayed(),
+            this.rounds
+          );
           this.player2.setPlayerTurn(false);
+          this.roundCount(this.player2);
           this.currentPlayer = this.player;
           this.currentPlayer.setPlayerTurn(true);
         }
       }
-      console.log(this.currentPlayer.getRoundPlayed(), round, this.rounds);
     }
     this.turnIndicator.setText(this.currentPlayer.getPlayerName() + "'s turn");
-    this.roundCount();
   }
 
   playerAnim() {
@@ -289,23 +299,25 @@ export default class GameScene extends Phaser.Scene {
     this.timerText.setText('Countdown: ' + this.formatTime(this.initialTime));
   }
 
-  roundCount() {
-    if (
+  roundCount(player) {
+    /*  if (
       this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
       (this.player.getRoundPlayed() > 0 && this.player2.getRoundPlayed() > 0) &&
       this.roundCounter <= this.rounds
     ) {
       this.roundCounter++;
       console.log('roundCounter ', this.roundCounter, this.rounds);
-    } else if (this.currentPlayer.getRoundPlayed() === this.rounds) {
-      this.currentPlayer.setEligibilityToPlay(false);
-      this.currentPlayer.uploadScore();
+    } else*/
+
+    if (player.getRoundPlayed() === this.rounds) {
+      player.setEligibilityToPlay(false);
+      player.uploadScore();
+      console.log(player.getPlayerName(), "'s uploadScore");
       if (
         this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
         (this.player.getRoundPlayed() === this.rounds &&
           this.player2.getRoundPlayed() === this.rounds)
       ) {
-        console.log(this.currentPlayer.getPlayerName(), ' uploadScore');
         this.add.text(200, 200, 'Rounds completed turn', {
           fontSize: '34px',
           fill: 'yellow'
