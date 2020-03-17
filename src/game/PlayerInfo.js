@@ -26,12 +26,9 @@ export default class PlayerInfo extends Phaser.Scene {
           this.playerTwo.value !== '' &&
           this.rounds.value !== ''
         ) {
-          //  Turn off the click events
           this.removeListener('click');
 
-          //  Hide the login element
           this.setVisible(false);
-          //console.log(this.playerOne.value, this.playerTwo.value);
           game.scene.start('Title', {
             playerOne: this.playerOne.value,
             playerTwo: this.playerTwo.value,
@@ -39,34 +36,20 @@ export default class PlayerInfo extends Phaser.Scene {
           });
         }
       }
-      //this.scene.start('Title');
     });
-    //this.scene.start('Title');
+  }
+
+  async getScoreboard() {
+    try {
+      let response = await fetch(
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/'
+      );
+
+      let result = await response.json();
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log('error unable to fetch the data Please try again!');
+    }
   }
 }
-
-/*
-let player = { 
-  "user": "John Doe",
-  "score": 42
-}
-getApi.addEventListener('click', async () => {
-  let response = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(player)
-    }
-  );
-
-  let result = await response.json();
-
-  display(result);
-});
-
-const display = data => {
-  console.log(data);
-};*/
