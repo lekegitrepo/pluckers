@@ -55,7 +55,11 @@ export default class GameScene extends Phaser.Scene {
       this.cursors
     );
 
-    console.log(this.player.getScore());
+    console.log(
+      'players ',
+      this.player.getPlayerName(),
+      this.player2.getPlayerName()
+    );
 
     let gc = new GameController(this.player, this.player2);
     this.currentPlayer = gc.currentPlayer();

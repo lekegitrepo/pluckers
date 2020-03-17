@@ -27,7 +27,6 @@ export default class Button extends Phaser.GameObjects.Container {
     this.add(this.text);
 
     this.button.on('pointerdown', () => {
-      console.log(targetSceneData);
       this.scene.scene.start(targetScene, targetSceneData);
     });
 

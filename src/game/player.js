@@ -17,6 +17,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.shootTime;
     this.orien = config.orient;
     this.turn = false;
+    this.name = config.name;
   }
 
   update() {
@@ -70,5 +71,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   setPlayerTurn(turn) {
     this.turn = turn;
+  }
+
+  getPlayerName() {
+    return this.name;
   }
 }
