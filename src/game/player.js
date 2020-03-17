@@ -8,7 +8,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       config.y,
       config.key,
       config.orient,
-      config.name
+      config.name,
     );
     config.scene.physics.world.enableBody(this);
     config.scene.add.existing(this);
@@ -25,11 +25,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scoreText = config.scene.add.text(
       config.x - 45,
       config.y - 290,
-      'Score: ' + this.score,
+      `Score: ${this.score}`,
       {
         fontSize: '12px',
-        fill: '#fff'
-      }
+        fill: '#fff',
+      },
     );
   }
 
@@ -64,10 +64,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
       }
     }
 
-    /*if (this.cursors.left.isDown) {
+    /* if (this.cursors.left.isDown) {
       this.anims.play('left', true);
       this.fire();
-    }*/
+    } */
   }
 
   getPlayer() {
@@ -99,7 +99,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
 
   updateScore() {
-    this.scoreText.setText('Score: ' + this.score);
+    this.scoreText.setText(`Score: ${this.score}`);
   }
 
   updateRoundPlayed(played) {
@@ -121,21 +121,21 @@ export default class Player extends Phaser.GameObjects.Sprite {
   async uploadScore() {
     const player = {
       user: this.getPlayerName(),
-      score: this.getScore()
+      score: this.getScore(),
     };
     try {
-      let response = await fetch(
+      const response = await fetch(
         'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json;charset=utf-8',
           },
-          body: JSON.stringify(player)
-        }
+          body: JSON.stringify(player),
+        },
       );
 
-      let result = await response.json();
+      const result = await response.json();
       console.log(result);
       return result;
     } catch (err) {

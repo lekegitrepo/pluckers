@@ -13,18 +13,18 @@ export default class PlayerInfo extends Phaser.Scene {
   }
 
   create() {
-    let htmlDom = this.add.dom(400, 200).createFromCache('info');
+    const htmlDom = this.add.dom(400, 200).createFromCache('info');
     htmlDom.addListener('click');
-    htmlDom.on('click', function(e) {
+    htmlDom.on('click', function (e) {
       if (e.target.name === 'submit') {
         this.playerOne = this.getChildByName('player-one');
         this.playerTwo = this.getChildByName('player-two');
         this.rounds = this.getChildByName('rounds');
 
         if (
-          this.playerOne.value !== '' &&
-          this.playerTwo.value !== '' &&
-          this.rounds.value !== ''
+          this.playerOne.value !== ''
+          && this.playerTwo.value !== ''
+          && this.rounds.value !== ''
         ) {
           this.removeListener('click');
 
@@ -32,7 +32,7 @@ export default class PlayerInfo extends Phaser.Scene {
           game.scene.start('Title', {
             playerOne: this.playerOne.value,
             playerTwo: this.playerTwo.value,
-            rounds: this.rounds.value
+            rounds: this.rounds.value,
           });
         }
       }
@@ -41,11 +41,11 @@ export default class PlayerInfo extends Phaser.Scene {
 
   async getScoreboard() {
     try {
-      let response = await fetch(
-        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/'
+      const response = await fetch(
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
       );
 
-      let result = await response.json();
+      const result = await response.json();
       return result;
     } catch (err) {
       console.log('error unable to fetch the data Please try again!');

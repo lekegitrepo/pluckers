@@ -7,7 +7,7 @@ export default class GameController {
   }
 
   setInitialTurn() {
-    let players = [this.player1, this.player2];
+    const players = [this.player1, this.player2];
     return players[Phaser.Math.Between(0, 1)];
   }
 

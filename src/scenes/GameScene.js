@@ -32,7 +32,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    console.log(this.rounds);
     const { width, height } = this.sys.game.config;
     const bg = this.add.tileSprite(0, 0, width, height, 'tile');
     bg.setOrigin(0, 0);
@@ -62,21 +61,14 @@ export default class GameScene extends Phaser.Scene {
       this.cursors
     );
 
-    console.log(
-      'players ',
-      this.player.getPlayerName(),
-      this.player2.getPlayerName()
-    );
-
-    let gc = new GameController(this.player, this.player2);
+    const gc = new GameController(this.player, this.player2);
     this.currentPlayer = gc.currentPlayer();
     this.currentPlayer.setPlayerTurn(true);
-    console.log(this.currentPlayer.getPlayer());
 
     this.turnIndicator = this.add.text(
       200,
       100,
-      this.currentPlayer.getPlayerName() + "'s turn",
+      `${this.currentPlayer.getPlayerName()}'s turn`,
       { fontSize: '34px', fill: 'yellow' }
     );
 
@@ -98,7 +90,7 @@ export default class GameScene extends Phaser.Scene {
     this.timerText = this.add.text(
       32,
       32,
-      'Countdown: ' + this.formatTime(this.initialTime)
+      `Countdown: ${this.formatTime(this.initialTime)}`
     );
 
     // Each 1000 ms call onEvent
@@ -187,11 +179,6 @@ export default class GameScene extends Phaser.Scene {
         if (this.player === this.currentPlayer) {
           const player1Round = this.player.getRoundPlayed() + 1;
           this.player.updateRoundPlayed(player1Round);
-          console.log(
-            this.player.getPlayerName(),
-            this.player.getRoundPlayed(),
-            this.rounds
-          );
           this.player.setPlayerTurn(false);
           this.roundCount(this.player);
           this.currentPlayer = this.player2;
@@ -199,11 +186,6 @@ export default class GameScene extends Phaser.Scene {
         } else if (this.player2 === this.currentPlayer) {
           const player2Round = this.player2.getRoundPlayed() + 1;
           this.player2.updateRoundPlayed(player2Round);
-          console.log(
-            this.player2.getPlayerName(),
-            this.player2.getRoundPlayed(),
-            this.rounds
-          );
           this.player2.setPlayerTurn(false);
           this.roundCount(this.player2);
           this.currentPlayer = this.player;
@@ -211,7 +193,7 @@ export default class GameScene extends Phaser.Scene {
         }
       }
     }
-    this.turnIndicator.setText(this.currentPlayer.getPlayerName() + "'s turn");
+    this.turnIndicator.setText(`${this.currentPlayer.getPlayerName()}'s turn`);
   }
 
   playerAnim() {
@@ -276,7 +258,6 @@ export default class GameScene extends Phaser.Scene {
     const score = this.currentPlayer.getScore() + 1;
     this.currentPlayer.setScore(score);
     this.currentPlayer.updateScore();
-    console.log(this.currentPlayer.getScore());
   }
 
   spawnFruit() {
@@ -320,23 +301,13 @@ export default class GameScene extends Phaser.Scene {
 
   onEvent() {
     this.initialTime -= 1; // One second
-    this.timerText.setText('Countdown: ' + this.formatTime(this.initialTime));
+    this.timerText.setText(`Countdown: ${this.formatTime(this.initialTime)}`);
   }
 
   roundCount(player) {
-    /*  if (
-      this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
-      (this.player.getRoundPlayed() > 0 && this.player2.getRoundPlayed() > 0) &&
-      this.roundCounter <= this.rounds
-    ) {
-      this.roundCounter++;
-      console.log('roundCounter ', this.roundCounter, this.rounds);
-    } else*/
-
     if (player.getRoundPlayed() === this.rounds) {
       player.setEligibilityToPlay(false);
       player.uploadScore();
-      console.log(player.getPlayerName(), "'s uploadScore");
       if (
         this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
         (this.player.getRoundPlayed() === this.rounds &&

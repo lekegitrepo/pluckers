@@ -28,8 +28,8 @@ export default class TitleScene extends Phaser.Scene {
       {
         playerOne: this.playerOne,
         playerTwo: this.playerTwo,
-        rounds: this.rounds
-      }
+        rounds: this.rounds,
+      },
     );
 
     // Options
@@ -40,7 +40,7 @@ export default class TitleScene extends Phaser.Scene {
       'btn-one',
       'btn-one-inverse',
       'Options',
-      'Options'
+      'Options',
     );
 
     // Credits
@@ -51,7 +51,7 @@ export default class TitleScene extends Phaser.Scene {
       'btn-one',
       'btn-one-inverse',
       'Credits',
-      'Credits'
+      'Credits',
     );
 
     this.sm = this.sys.game.globals.sc;
@@ -71,8 +71,8 @@ export default class TitleScene extends Phaser.Scene {
         config.width / 2,
         config.height / 2 - offset * 100,
         config.width,
-        config.height
-      )
+        config.height,
+      ),
     );
   }
 

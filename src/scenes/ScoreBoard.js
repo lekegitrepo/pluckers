@@ -13,7 +13,7 @@ export default class ScoreBoard extends Phaser.Scene {
   preload() {}
 
   create() {
-    this.add.text(80, 10, `Leaderboard`, { fontSize: '32px', fill: 'green' });
+    this.add.text(80, 10, 'Leaderboard', { fontSize: '32px', fill: 'green' });
     this.getScore();
 
     this.game = new Button(
@@ -43,7 +43,7 @@ export default class ScoreBoard extends Phaser.Scene {
     const scoreBoard = await scores.getScoreboard();
     const scoreArr = scoreBoard.result;
     console.log(scoreArr[0]);
-    for (let i = 0; i < scoreArr.length; i++) {
+    for (let i = 0; i < scoreArr.length; i += 1) {
       console.log(scoreArr[i]);
       y += 10;
       this.add.text(

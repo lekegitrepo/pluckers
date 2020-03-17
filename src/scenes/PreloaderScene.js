@@ -28,8 +28,8 @@ export default class PreloaderScene extends Phaser.Scene {
       text: 'Loading...',
       style: {
         font: '20px monospace',
-        fill: '#ffffff'
-      }
+        fill: '#ffffff',
+      },
     });
     loadingText.setOrigin(0.5, 0.5);
 
@@ -39,8 +39,8 @@ export default class PreloaderScene extends Phaser.Scene {
       text: '0%',
       style: {
         font: '18px monospace',
-        fill: '#ffffff'
-      }
+        fill: '#ffffff',
+      },
     });
     percentText.setOrigin(0.5, 0.5);
 
@@ -50,8 +50,8 @@ export default class PreloaderScene extends Phaser.Scene {
       text: '',
       style: {
         font: '18px monospace',
-        fill: '#ffffff'
-      }
+        fill: '#ffffff',
+      },
     });
     assetText.setOrigin(0.5, 0.5);
 
@@ -94,23 +94,23 @@ export default class PreloaderScene extends Phaser.Scene {
 
     this.load.spritesheet('up', 'assets/up-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
     this.load.spritesheet('down', 'assets/down-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
     this.load.spritesheet('action', 'assets/h-sprite.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
     this.load.spritesheet('explosion', 'assets/explosion.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
     this.load.spritesheet('dude', 'assets/dude.png', {
       frameWidth: 32,
-      frameHeight: 38
+      frameHeight: 38,
     });
   }
 
