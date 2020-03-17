@@ -8,6 +8,7 @@ import GameScene from './scenes/GameScene';
 import OptionsScene from './scenes/OptionsScene';
 import CreditsScene from './scenes/CreditScene';
 import PlayerInfo from './game/PlayerInfo';
+import ScoreBoard from './scenes/ScoreBoard';
 
 class Game extends Phaser.Game {
     constructor() {
@@ -17,6 +18,7 @@ class Game extends Phaser.Game {
 
         this.globals = { sc, bgMusic: null };
 
+        this.scene.add('Scores', ScoreBoard);
         this.scene.add('PlayerInfo', PlayerInfo);
         this.scene.add('Boot', BootScene);
         this.scene.add('Preloader', PreloaderScene);
