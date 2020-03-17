@@ -5,6 +5,7 @@ export default class PlayerInfo extends Phaser.Scene {
     super('PlayerInfo');
     this.playerOne;
     this.playerTwo;
+    this.rounds;
   }
 
   preload() {
@@ -16,9 +17,9 @@ export default class PlayerInfo extends Phaser.Scene {
     htmlDom.addListener('click');
     htmlDom.on('click', function(e) {
       if (e.target.name === 'submit') {
-        //this.getChildByName
         this.playerOne = this.getChildByName('player-one');
         this.playerTwo = this.getChildByName('player-two');
+        this.rounds = this.getChildByName('rounds');
 
         if (this.playerOne.value !== '' && this.playerTwo.value !== '') {
           //  Turn off the click events
@@ -29,7 +30,8 @@ export default class PlayerInfo extends Phaser.Scene {
           //console.log(this.playerOne.value, this.playerTwo.value);
           game.scene.start('Title', {
             playerOne: this.playerOne.value,
-            playerTwo: this.playerTwo.value
+            playerTwo: this.playerTwo.value,
+            rounds: this.rounds.value
           });
         }
       }
@@ -39,15 +41,20 @@ export default class PlayerInfo extends Phaser.Scene {
   }
 }
 
-/*getApi.addEventListener('click', async () => {
+/*
+let player = { 
+  "user": "John Doe",
+  "score": 42
+}
+getApi.addEventListener('click', async () => {
   let response = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/',
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
-      body: JSON.stringify(game)
+      body: JSON.stringify(player)
     }
   );
 

@@ -11,6 +11,7 @@ export default class TitleScene extends Phaser.Scene {
   init(data) {
     this.playerOne = data.playerOne;
     this.playerTwo = data.playerTwo;
+    this.rounds = data.rounds;
   }
 
   create() {
@@ -26,7 +27,8 @@ export default class TitleScene extends Phaser.Scene {
       'Game',
       {
         playerOne: this.playerOne,
-        playerTwo: this.playerTwo
+        playerTwo: this.playerTwo,
+        rounds: this.rounds
       }
     );
 

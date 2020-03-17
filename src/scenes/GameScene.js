@@ -18,14 +18,17 @@ export default class GameScene extends Phaser.Scene {
     this.timedEvent;
     this.initialTime = 30;
     this.turnIndicator;
+    this.roundCounter = 0;
   }
 
   init(data) {
     this.playerOne = data.playerOne;
     this.playerTwo = data.playerTwo;
+    this.rounds = parseInt(data.rounds, 10);
   }
 
   create() {
+    console.log(this.rounds);
     const { width, height } = this.sys.game.config;
     const bg = this.add.tileSprite(0, 0, width, height, 'tile');
     bg.setOrigin(0, 0);
@@ -42,8 +45,6 @@ export default class GameScene extends Phaser.Scene {
       },
       this.cursors
     );
-
-    const player1XY = this.player.getPlayerXYPoint();
 
     this.player2 = new Player(
       {
@@ -265,5 +266,17 @@ export default class GameScene extends Phaser.Scene {
   onEvent() {
     this.initialTime -= 1; // One second
     this.timerText.setText('Countdown: ' + this.formatTime(this.initialTime));
+  }
+
+  roundCount() {
+    if (this.player.roundPlayed() === this.player2.roundPlayed()) {
+      if (this.roundCounter <= this.rounds) {
+        this.roundCounter++;
+      }
+    } else if (this.player.roundPlayed() === this.rounds) {
+      this.player.uploadScore();
+    } else if (this.player2.roundPlayed() === this.rounds) {
+      this.player.uploadScore();
+    }
   }
 }

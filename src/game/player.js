@@ -19,6 +19,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.turn = false;
     this.name = config.name;
     this.playerXYPoint = [config.x, config.y];
+    this.roundPlayed = 0;
 
     this.scoreText = config.scene.add.text(
       config.x - 45,
@@ -98,5 +99,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   updateScore() {
     this.scoreText.setText('Score: ' + this.score);
+  }
+
+  updateRoundPlayed(played) {
+    this.roundPlayed = played;
+  }
+
+  getRoundPlayed() {
+    return this.roundPlayed;
   }
 }
