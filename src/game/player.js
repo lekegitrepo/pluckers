@@ -18,6 +18,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.orien = config.orient;
     this.turn = false;
     this.name = config.name;
+
+    this.scoreText = config.scene.add.text(
+      config.x - 45,
+      config.y - 290,
+      'Score: ' + this.score,
+      {
+        fontSize: '12px',
+        fill: '#fff'
+      }
+    );
   }
 
   update() {
@@ -79,5 +89,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   getPlayerName() {
     return this.name;
+  }
+
+  updateScore() {
+    this.scoreText.setText('Score: ' + this.score);
   }
 }

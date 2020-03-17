@@ -17,6 +17,8 @@ export default class GameScene extends Phaser.Scene {
     this.timerText;
     this.timedEvent;
     this.initialTime = 30;
+    this.playerOneScore = 0;
+    this.playerTwoScore = 0;
   }
 
   init(data) {
@@ -205,6 +207,10 @@ export default class GameScene extends Phaser.Scene {
   shotFruit(bullet, fruit) {
     fruit.disableBody(true, true);
     bullet.disableBody(true, true);
+    const score = this.currentPlayer.getScore() + 1;
+    this.currentPlayer.setScore(score);
+    this.currentPlayer.updateScore();
+    console.log(this.currentPlayer.getScore());
   }
 
   spawnFruit() {
