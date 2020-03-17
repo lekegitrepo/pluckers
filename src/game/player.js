@@ -65,6 +65,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
     return this.score;
   }
 
+  setScore(score) {
+    this.score = score;
+  }
+
   getPlayerTurn() {
     return this.turn;
   }
