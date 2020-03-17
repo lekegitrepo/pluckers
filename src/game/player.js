@@ -20,6 +20,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.name = config.name;
     this.playerXYPoint = [config.x, config.y];
     this.roundPlayed = 0;
+    this.eligibleToPlay = true;
 
     this.scoreText = config.scene.add.text(
       config.x - 45,
@@ -107,5 +108,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
   getRoundPlayed() {
     return this.roundPlayed;
+  }
+
+  getEligibilityToPlay() {
+    return this.eligibleToPlay;
+  }
+
+  setEligibilityToPlay(status) {
+    this.eligibleToPlay = status;
   }
 }

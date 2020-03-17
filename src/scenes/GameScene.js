@@ -149,19 +149,23 @@ export default class GameScene extends Phaser.Scene {
   }
 
   switchPlayer() {
+    const round = this.currentPlayer.getRoundPlayed() + 1;
     if (this.initialTime === 0) {
       this.initialTime = 30;
       if (this.player === this.currentPlayer) {
+        this.player.updateRoundPlayed(round);
         this.player.setPlayerTurn(false);
         this.currentPlayer = this.player2;
         this.currentPlayer.setPlayerTurn(true);
       } else if (this.player2 === this.currentPlayer) {
+        this.player2.updateRoundPlayed(round);
         this.player2.setPlayerTurn(false);
         this.currentPlayer = this.player;
         this.currentPlayer.setPlayerTurn(true);
       }
     }
     this.turnIndicator.setText(this.currentPlayer.getPlayerName() + "'s turn");
+    this.roundCount();
   }
 
   playerAnim() {
@@ -269,14 +273,22 @@ export default class GameScene extends Phaser.Scene {
   }
 
   roundCount() {
-    if (this.player.roundPlayed() === this.player2.roundPlayed()) {
+    if (this.player.getRoundPlayed() === this.player2.getRoundPlayed()) {
       if (this.roundCounter <= this.rounds) {
         this.roundCounter++;
       }
-    } else if (this.player.roundPlayed() === this.rounds) {
-      this.player.uploadScore();
-    } else if (this.player2.roundPlayed() === this.rounds) {
-      this.player.uploadScore();
+    } else if (this.player.getRoundPlayed() === this.rounds) {
+      //this.player.uploadScore();
+      console.log('player1 uploadScore');
+    } else if (this.player2.getRoundPlayed() === this.rounds) {
+      //this.player2.uploadScore();
+      console.log('player2 uploadScore');
+    }
+
+    if (this.roundCounter === this.rounds) {
+      //this.currentPlayer.uploadScore();
+      console.log('currentPlayer uploadScore');
+      gameOver = true;
     }
   }
 }

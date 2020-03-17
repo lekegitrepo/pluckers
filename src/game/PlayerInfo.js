@@ -21,7 +21,11 @@ export default class PlayerInfo extends Phaser.Scene {
         this.playerTwo = this.getChildByName('player-two');
         this.rounds = this.getChildByName('rounds');
 
-        if (this.playerOne.value !== '' && this.playerTwo.value !== '') {
+        if (
+          this.playerOne.value !== '' &&
+          this.playerTwo.value !== '' &&
+          this.rounds.value !== ''
+        ) {
           //  Turn off the click events
           this.removeListener('click');
 
