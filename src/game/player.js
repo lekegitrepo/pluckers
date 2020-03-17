@@ -117,4 +117,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
   setEligibilityToPlay(status) {
     this.eligibleToPlay = status;
   }
+
+  async uploadScore() {
+    const player = {
+      user: this.getPlayerName(),
+      score: this.getScore()
+    };
+    try {
+      let response = await fetch(
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(player)
+        }
+      );
+
+      let result = await response.json();
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log('error unable to fetch the data Please try again!');
+    }
+  }
 }

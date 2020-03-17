@@ -299,6 +299,7 @@ export default class GameScene extends Phaser.Scene {
       console.log('roundCounter ', this.roundCounter, this.rounds);
     } else if (this.currentPlayer.getRoundPlayed() === this.rounds) {
       this.currentPlayer.setEligibilityToPlay(false);
+      this.currentPlayer.uploadScore();
       if (
         this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
         (this.player.getRoundPlayed() === this.rounds &&
@@ -311,12 +312,6 @@ export default class GameScene extends Phaser.Scene {
         });
         this.scene.pause('Game');
       }
-    }
-
-    if (this.roundCounter === this.rounds) {
-      //this.currentPlayer.uploadScore();
-      console.log('currentPlayer uploadScore');
-      this.gameOver = true;
     }
   }
 }
