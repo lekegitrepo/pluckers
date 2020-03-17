@@ -46,7 +46,6 @@ export default class PlayerInfo extends Phaser.Scene {
       );
 
       let result = await response.json();
-      console.log(result);
       return result;
     } catch (err) {
       console.log('error unable to fetch the data Please try again!');

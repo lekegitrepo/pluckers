@@ -3,6 +3,8 @@
 import 'phaser';
 import Player from '../game/player';
 import GameController from '../game/game_controller';
+import config from '../game-config/config';
+import Button from '../components/Button';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -19,6 +21,8 @@ export default class GameScene extends Phaser.Scene {
     this.initialTime = 30;
     this.turnIndicator;
     this.roundCounter = 0;
+    this.scoreBoard;
+    this.menuButton;
   }
 
   init(data) {
@@ -104,6 +108,26 @@ export default class GameScene extends Phaser.Scene {
       callbackScope: this,
       loop: true
     });
+
+    this.scoreBoard = new Button(
+      this,
+      config.width / 2,
+      config.height / 2,
+      'btn-one',
+      'btn-one-inverse',
+      'Score Board',
+      'Scores'
+    );
+
+    this.menuButton = new Button(
+      this,
+      400,
+      500,
+      'btn-one',
+      'btn-one-inverse',
+      'Menu',
+      'Title'
+    );
   }
 
   update() {
