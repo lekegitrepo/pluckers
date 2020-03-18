@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
-
+/* eslint-disable spaced-comment */
 /* eslint-disable operator-linebreak*/
 
 import 'phaser';

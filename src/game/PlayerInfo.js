@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint-disable comma-dangle */
