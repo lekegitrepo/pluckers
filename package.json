@@ -8,6 +8,11 @@
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server --mode=development"
   },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lekegitrepo/pluckers.git"
