@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
+/* eslint-disable operator-linebreak*/
 import 'phaser';
 import Player from '../game/player';
 import GameController from '../game/game_controller';

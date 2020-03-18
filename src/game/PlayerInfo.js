@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable consistent-return*/
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable func-names*/
 import 'phaser';
 
 export default class PlayerInfo extends Phaser.Scene {
@@ -15,16 +20,16 @@ export default class PlayerInfo extends Phaser.Scene {
   create() {
     const htmlDom = this.add.dom(400, 200).createFromCache('info');
     htmlDom.addListener('click');
-    htmlDom.on('click', function (e) {
+    htmlDom.on('click', function(e) {
       if (e.target.name === 'submit') {
         this.playerOne = this.getChildByName('player-one');
         this.playerTwo = this.getChildByName('player-two');
         this.rounds = this.getChildByName('rounds');
 
         if (
-          this.playerOne.value !== ''
-          && this.playerTwo.value !== ''
-          && this.rounds.value !== ''
+          this.playerOne.value !== '' &&
+          this.playerTwo.value !== '' &&
+          this.rounds.value !== ''
         ) {
           this.removeListener('click');
 
@@ -32,7 +37,7 @@ export default class PlayerInfo extends Phaser.Scene {
           game.scene.start('Title', {
             playerOne: this.playerOne.value,
             playerTwo: this.playerTwo.value,
-            rounds: this.rounds.value,
+            rounds: this.rounds.value
           });
         }
       }
@@ -42,7 +47,7 @@ export default class PlayerInfo extends Phaser.Scene {
   async getScoreboard() {
     try {
       const response = await fetch(
-        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/'
       );
 
       const result = await response.json();
