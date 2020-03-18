@@ -4,8 +4,15 @@ import Player from '../src/game/player';
 
 jest.mock('../src/game/player');
 
+const playerNameMock = jest.fn();
+
+Player.mockImplementation(() => {
+  return {
+    getPlayerName: playerNameMock
+  };
+});
+
 beforeEach(() => {
-  // Clear all instances and calls to constructor and all methods:
   Player.mockClear();
 });
 
@@ -21,17 +28,10 @@ describe('Phaser', () => {
 
 describe('GameController', () => {
   it('Check if the GameController called the class constructor', () => {
+    expect(Player).not.toHaveBeenCalled();
     const player1 = new Player({}, null);
     const player2 = new Player({}, null);
     const gc = new GameController(player1, player2);
     expect(Player).toHaveBeenCalledTimes(2);
-  });
-});
-
-describe('Player', () => {
-  it('get player name, score', () => {
-    const mockPlayerName = jest.fn('playerOne');
-    Player.prototype.getPlayerName = mockPlayerName;
-    expect(player.getPlayerName()).toBe('playerOne');
   });
 });
