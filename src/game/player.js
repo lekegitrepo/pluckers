@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-console */
 import 'phaser';
 
 export default class Player extends Phaser.GameObjects.Sprite {
@@ -8,7 +11,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       config.y,
       config.key,
       config.orient,
-      config.name,
+      config.name
     );
     config.scene.physics.world.enableBody(this);
     config.scene.add.existing(this);
@@ -28,13 +31,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
       `Score: ${this.score}`,
       {
         fontSize: '12px',
-        fill: '#fff',
-      },
+        fill: '#fff'
+      }
     );
   }
 
   update() {
-    if (this.orien == 'left') {
+    if (this.orien === 'left') {
       if (this.cursors.up.isDown && this.turn) {
         this.body.setVelocityY(-160);
 
@@ -48,7 +51,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         this.anims.play('turnLeft');
       }
-    } else if (this.orien == 'right') {
+    } else if (this.orien === 'right') {
       if (this.cursors.up.isDown && this.turn) {
         this.body.setVelocityY(-160);
 
@@ -63,11 +66,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.anims.play('turnRight');
       }
     }
-
-    /* if (this.cursors.left.isDown) {
-      this.anims.play('left', true);
-      this.fire();
-    } */
   }
 
   getPlayer() {
@@ -121,7 +119,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
   async uploadScore() {
     const player = {
       user: this.getPlayerName(),
-      score: this.getScore(),
+      score: this.getScore()
     };
     try {
       const response = await fetch(
@@ -129,14 +127,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json;charset=utf-8',
+            'Content-Type': 'application/json;charset=utf-8'
           },
-          body: JSON.stringify(player),
-        },
+          body: JSON.stringify(player)
+        }
       );
 
       const result = await response.json();
-      console.log(result);
       return result;
     } catch (err) {
       console.log('error unable to fetch the data Please try again!');
