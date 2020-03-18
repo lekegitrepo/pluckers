@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Phaser from 'phaser';
 import GameController from '../src/game/game_controller';
 import Player from '../src/game/player';
@@ -6,11 +7,7 @@ jest.mock('../src/game/player');
 
 const playerNameMock = jest.fn();
 
-Player.mockImplementation(() => {
-  return {
-    getPlayerName: playerNameMock
-  };
-});
+Player.mockImplementation(() => ({ getPlayerName: playerNameMock }));
 
 beforeEach(() => {
   Player.mockClear();

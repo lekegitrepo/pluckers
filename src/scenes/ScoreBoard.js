@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable comma-dangle */
 import 'phaser';
 import PlayerInfo from '../game/PlayerInfo';
 import config from '../game-config/config';
@@ -9,8 +11,6 @@ export default class ScoreBoard extends Phaser.Scene {
     this.game;
     this.menuButton;
   }
-
-  preload() {}
 
   create() {
     this.add.text(80, 10, 'Leaderboard', { fontSize: '32px', fill: 'green' });
@@ -42,9 +42,7 @@ export default class ScoreBoard extends Phaser.Scene {
     const scores = new PlayerInfo();
     const scoreBoard = await scores.getScoreboard();
     const scoreArr = scoreBoard.result;
-    console.log(scoreArr[0]);
     for (let i = 0; i < scoreArr.length; i += 1) {
-      console.log(scoreArr[i]);
       y += 10;
       this.add.text(
         80,
