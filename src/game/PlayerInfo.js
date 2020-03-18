@@ -1,9 +1,14 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
+/* eslint-disable comma-dangle */
+
 /* eslint-disable consistent-return*/
+
 /* eslint-disable operator-linebreak*/
+
 /* eslint-disable no-unused-expressions */
 /* eslint-disable class-methods-use-this */
+
 /* eslint-disable space-before-function-paren*/
 
 import 'phaser';
