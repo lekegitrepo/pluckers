@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
+/* eslint-disable func-names */
 /* eslint-disable consistent-return*/
-/* eslint-disable class-methods-use-this */
+/* eslint-disable operator-linebreak*/
 /* eslint-disable no-unused-expressions */
-/* eslint-disable func-names*/
+/* eslint-disable class-methods-use-this */
+/* eslint-disable space-before-function-paren*/
+
 import 'phaser';
 
 export default class PlayerInfo extends Phaser.Scene {

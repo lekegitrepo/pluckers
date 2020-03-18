@@ -2,6 +2,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-console */
 /* eslint-disable consistent-return*/
+
 import 'phaser';
 
 export default class Player extends Phaser.GameObjects.Sprite {
