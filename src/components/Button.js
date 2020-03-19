@@ -8,8 +8,10 @@ export default class Button extends Phaser.GameObjects.Container {
     key1,
     key2,
     text,
-    targetScene,
+    targetScene = null,
     targetSceneData = null,
+    player1 = null,
+    player2 = null
   ) {
     super(scene);
     this.scene = scene;
@@ -19,7 +21,7 @@ export default class Button extends Phaser.GameObjects.Container {
     this.button = this.scene.add.sprite(0, 0, key1).setInteractive();
     this.text = this.scene.add.text(0, 0, text, {
       fontSize: '20px',
-      fill: '#fff',
+      fill: '#fff'
     });
     Phaser.Display.Align.In.Center(this.text, this.button);
 
@@ -27,7 +29,12 @@ export default class Button extends Phaser.GameObjects.Container {
     this.add(this.text);
 
     this.button.on('pointerdown', () => {
-      this.scene.scene.start(targetScene, targetSceneData);
+      if (targetScene === null) {
+        player1.uploadScore();
+        player2.uploadScore();
+      } else {
+        this.scene.scene.start(targetScene, targetSceneData);
+      }
     });
 
     this.button.on('pointerover', () => {
@@ -37,8 +44,6 @@ export default class Button extends Phaser.GameObjects.Container {
     this.button.on('pointerout', () => {
       this.button.setTexture(key1);
     });
-
-    // this.button.setScale(0.5);
 
     this.scene.add.existing(this);
   }

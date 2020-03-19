@@ -185,14 +185,12 @@ export default class GameScene extends Phaser.Scene {
           const player1Round = this.player.getRoundPlayed() + 1;
           this.player.updateRoundPlayed(player1Round);
           this.player.setPlayerTurn(false);
-          //this.roundCount(this.player);
           this.currentPlayer = this.player2;
           this.currentPlayer.setPlayerTurn(true);
         } else if (this.player2 === this.currentPlayer) {
           const player2Round = this.player2.getRoundPlayed() + 1;
           this.player2.updateRoundPlayed(player2Round);
           this.player2.setPlayerTurn(false);
-          //this.roundCount(this.player2);
           this.currentPlayer = this.player;
           this.currentPlayer.setPlayerTurn(true);
         }
@@ -328,10 +326,23 @@ export default class GameScene extends Phaser.Scene {
         fontSize: '34px',
         fill: 'yellow'
       });
-      this.add.text(200, 360, this.checkWinner(), {
+      this.add.text(100, 360, this.checkWinner(), {
         fontSize: '30px',
         fill: 'green'
       });
+
+      this.menuButton = new Button(
+        this,
+        400,
+        400,
+        'btn-one',
+        'btn-one-inverse',
+        'Upload Scores',
+        null,
+        null,
+        this.player,
+        this.player2
+      );
 
       this.physics.pause();
     }
@@ -341,23 +352,5 @@ export default class GameScene extends Phaser.Scene {
     this.initialTime -= 1; // One second
     this.timerText.setText(`Countdown: ${this.formatTime(this.initialTime)}`);
     this.checkForGameOver();
-  }
-
-  roundCount(player) {
-    if (player.getRoundPlayed() === this.rounds) {
-      player.setEligibilityToPlay(false);
-      player.uploadScore();
-      if (
-        this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
-        this.player.getRoundPlayed() === this.rounds &&
-        this.player2.getRoundPlayed() === this.rounds
-      ) {
-        this.add.text(200, 200, 'Rounds completed turn', {
-          fontSize: '34px',
-          fill: 'yellow'
-        });
-        //this.scene.pause('Game');
-      }
-    }
   }
 }
