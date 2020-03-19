@@ -125,7 +125,6 @@ export default class GameScene extends Phaser.Scene {
       'Menu',
       'Title'
     );
-    this.checkForGameOver();
   }
 
   update() {
@@ -305,9 +304,43 @@ export default class GameScene extends Phaser.Scene {
     return `${minutes}:${partInSeconds}`;
   }
 
+  checkWinner() {
+    let winner;
+    if (this.player.getScore() > this.player2.getScore()) {
+      winner = `${this.player.getPlayerName()} won the with ${this.player.getScore()} fruits Plucked`;
+    } else if (this.player2.getScore() > this.player.getScore()) {
+      winner = `${this.player2.getPlayerName()} won the with ${this.player2.getScore()} fruits Plucked`;
+    } else {
+      winner = "It's a tie";
+    }
+    return winner;
+  }
+
+  checkForGameOver() {
+    if (
+      this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
+      this.player.getRoundPlayed() === this.rounds &&
+      this.player2.getRoundPlayed() === this.rounds
+    ) {
+      this.player.setEligibilityToPlay(false);
+      this.player2.setEligibilityToPlay(false);
+      this.add.text(200, 200, 'Rounds completed turn', {
+        fontSize: '34px',
+        fill: 'yellow'
+      });
+      this.add.text(200, 360, this.checkWinner(), {
+        fontSize: '30px',
+        fill: 'green'
+      });
+
+      this.physics.pause();
+    }
+  }
+
   onEvent() {
     this.initialTime -= 1; // One second
     this.timerText.setText(`Countdown: ${this.formatTime(this.initialTime)}`);
+    this.checkForGameOver();
   }
 
   roundCount(player) {
@@ -316,8 +349,8 @@ export default class GameScene extends Phaser.Scene {
       player.uploadScore();
       if (
         this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
-        (this.player.getRoundPlayed() === this.rounds &&
-          this.player2.getRoundPlayed() === this.rounds)
+        this.player.getRoundPlayed() === this.rounds &&
+        this.player2.getRoundPlayed() === this.rounds
       ) {
         this.add.text(200, 200, 'Rounds completed turn', {
           fontSize: '34px',
@@ -325,20 +358,6 @@ export default class GameScene extends Phaser.Scene {
         });
         //this.scene.pause('Game');
       }
-    }
-  }
-
-  checkForGameOver() {
-    if (
-      this.player.getRoundPlayed() === this.player2.getRoundPlayed() &&
-      (this.player.getRoundPlayed() === this.rounds &&
-        this.player2.getRoundPlayed() === this.rounds)
-    ) {
-      this.add.text(200, 200, 'Rounds completed turn', {
-        fontSize: '34px',
-        fill: 'yellow'
-      });
-      this.gameOver = true;
     }
   }
 }
