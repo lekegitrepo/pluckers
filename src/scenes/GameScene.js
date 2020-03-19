@@ -119,7 +119,7 @@ export default class GameScene extends Phaser.Scene {
     this.menuButton = new Button(
       this,
       400,
-      500,
+      550,
       'btn-one',
       'btn-one-inverse',
       'Menu',
@@ -334,7 +334,7 @@ export default class GameScene extends Phaser.Scene {
       this.menuButton = new Button(
         this,
         400,
-        400,
+        450,
         'btn-one',
         'btn-one-inverse',
         'Upload Scores',

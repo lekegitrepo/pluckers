@@ -18,8 +18,8 @@ export default class ScoreBoard extends Phaser.Scene {
 
     this.game = new Button(
       this,
-      config.width / 2,
-      config.height / 2,
+      600,
+      100,
       'btn-one',
       'btn-one-inverse',
       'Game',
@@ -28,8 +28,8 @@ export default class ScoreBoard extends Phaser.Scene {
 
     this.menuButton = new Button(
       this,
-      400,
-      500,
+      600,
+      200,
       'btn-one',
       'btn-one-inverse',
       'Menu',
@@ -43,11 +43,11 @@ export default class ScoreBoard extends Phaser.Scene {
     const scoreBoard = await scores.getScoreboard();
     const scoreArr = scoreBoard.result;
     for (let i = 0; i < scoreArr.length; i += 1) {
-      y += 10;
+      y += 20;
       this.add.text(
         80,
         y,
-        `Name: ${scoreArr[i].user} Score: ${scoreArr[i].score}`,
+        `User: ${scoreArr[i].user},  Score: ${scoreArr[i].score}`,
         { fontSize: '18px', fill: '#fff', paddingTop: '4px' }
       );
     }
