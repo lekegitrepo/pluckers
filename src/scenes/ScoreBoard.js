@@ -10,6 +10,9 @@ export default class ScoreBoard extends Phaser.Scene {
     super('Scores');
     this.game;
     this.menuButton;
+    this.COLOR_PRIMARY = 0x3d85c6;
+    this.COLOR_LIGHT = 0x59a3e7;
+    this.COLOR_DARK = 0x86bdee;
   }
 
   preload() {
@@ -22,8 +25,7 @@ export default class ScoreBoard extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(80, 10, 'Leaderboard', { fontSize: '32px', fill: 'green' });
-    this.getScore();
+    this.add.text(80, 10, 'Leaderboard', { fontSize: '32px', fill: '#3D85C6' });
 
     this.game = new Button(
       this,
@@ -44,17 +46,16 @@ export default class ScoreBoard extends Phaser.Scene {
       'Menu',
       'Title'
     );
+    this.scrollPanel();
   }
 
   scrollPanel() {
-    this.print = this.add.text(0, 0, '');
-
     let scrollablePanel = this.rexUI.add
       .scrollablePanel({
-        x: 400,
+        x: 250,
         y: 300,
-        width: 250,
-        height: 220,
+        width: 400,
+        height: 380,
 
         scrollMode: 0,
 
@@ -64,7 +65,7 @@ export default class ScoreBoard extends Phaser.Scene {
           2,
           2,
           10,
-          COLOR_PRIMARY
+          this.COLOR_PRIMARY
         ),
 
         panel: {
@@ -85,8 +86,15 @@ export default class ScoreBoard extends Phaser.Scene {
         },
 
         slider: {
-          track: this.rexUI.add.roundRectangle(0, 0, 20, 10, 10, COLOR_DARK),
-          thumb: this.rexUI.add.roundRectangle(0, 0, 0, 0, 13, COLOR_LIGHT)
+          track: this.rexUI.add.roundRectangle(
+            0,
+            0,
+            20,
+            10,
+            10,
+            this.COLOR_DARK
+          ),
+          thumb: this.rexUI.add.roundRectangle(0, 0, 0, 0, 13, this.COLOR_LIGHT)
         },
 
         space: {
@@ -99,24 +107,33 @@ export default class ScoreBoard extends Phaser.Scene {
         }
       })
       .layout();
-    //.drawBounds(this.add.graphics(), 0xff0000);
-
-    updatePanel(scrollablePanel, content);
+    this.getScore(scrollablePanel);
   }
 
-  async getScore() {
+  async getScore(panel) {
     let y = 50;
+    let sizer = panel.getElement('panel');
+    let scene = panel.scene;
+    console.log(sizer);
+
+    sizer.clear(true);
+
     const scores = new PlayerInfo();
     const scoreBoard = await scores.getScoreboard();
     const scoreArr = scoreBoard.result;
+
     for (let i = 0; i < scoreArr.length; i += 1) {
-      y += 20;
-      this.add.text(
-        80,
-        y,
-        `User: ${scoreArr[i].user},  Score: ${scoreArr[i].score}`,
-        { fontSize: '18px', fill: '#fff', paddingTop: '4px' }
+      sizer.add(
+        scene.add.text(
+          0,
+          0,
+          `${scoreArr[i].user},  Score: ${scoreArr[i].score}`,
+          { fontSize: '18px', fill: '#fff', paddingTop: '4px' }
+        )
       );
     }
+    panel.layout();
+    return panel;
   }
 }
+
