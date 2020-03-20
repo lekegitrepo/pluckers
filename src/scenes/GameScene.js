@@ -305,9 +305,9 @@ export default class GameScene extends Phaser.Scene {
   checkWinner() {
     let winner;
     if (this.player.getScore() > this.player2.getScore()) {
-      winner = `${this.player.getPlayerName()} won the with ${this.player.getScore()} fruits Plucked`;
+      winner = `${this.player.getPlayerName()} won with ${this.player.getScore()} fruits Plucked`;
     } else if (this.player2.getScore() > this.player.getScore()) {
-      winner = `${this.player2.getPlayerName()} won the with ${this.player2.getScore()} fruits Plucked`;
+      winner = `${this.player2.getPlayerName()} won with ${this.player2.getScore()} fruits Plucked`;
     } else {
       winner = "It's a tie";
     }
