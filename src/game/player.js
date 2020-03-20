@@ -126,7 +126,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     };
     try {
       const response = await fetch(
-        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/pqeoDUGqpXvNIeB0oQDw/scores/',
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/QMHf88FcU9wl842BCNG5/scores/',
         {
           method: 'POST',
           headers: {

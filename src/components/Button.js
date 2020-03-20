@@ -29,7 +29,7 @@ export default class Button extends Phaser.GameObjects.Container {
     this.add(this.text);
 
     this.button.on('pointerdown', () => {
-      if (targetScene === null) {
+      if (player1 !== null && player2 !== null) {
         player1.uploadScore();
         player2.uploadScore();
       } else {
