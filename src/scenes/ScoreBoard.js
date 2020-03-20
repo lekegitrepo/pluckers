@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
 /* eslint-disable class-methods-use-this */
+/* eslint-disable prefer-destructuring */
+
 import 'phaser';
 import PlayerInfo from '../game/PlayerInfo';
 import Button from '../components/Button';
