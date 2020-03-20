@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
+/* eslint-disable class-methods-use-this */
 import 'phaser';
 import PlayerInfo from '../game/PlayerInfo';
-import config from '../game-config/config';
 import Button from '../components/Button';
 
 export default class ScoreBoard extends Phaser.Scene {
@@ -50,7 +50,7 @@ export default class ScoreBoard extends Phaser.Scene {
   }
 
   scrollPanel() {
-    let scrollablePanel = this.rexUI.add
+    const scrollablePanel = this.rexUI.add
       .scrollablePanel({
         x: 250,
         y: 300,
@@ -111,10 +111,8 @@ export default class ScoreBoard extends Phaser.Scene {
   }
 
   async getScore(panel) {
-    let y = 50;
-    let sizer = panel.getElement('panel');
-    let scene = panel.scene;
-    console.log(sizer);
+    const sizer = panel.getElement('panel');
+    const scene = panel.scene;
 
     sizer.clear(true);
 
@@ -136,4 +134,3 @@ export default class ScoreBoard extends Phaser.Scene {
     return panel;
   }
 }
-
