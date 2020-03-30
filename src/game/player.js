@@ -18,7 +18,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     );
     config.scene.physics.world.enableBody(this);
     config.scene.add.existing(this);
-    this.body.setCollideWorldBounds(true)
+    this.body.setCollideWorldBounds(true);
     this.score = 0;
     this.cursors = cursor;
     this.shootTime;
